@@ -1,0 +1,24 @@
+Host *.sensi
+  User root
+Host rundeck
+  User root
+
+Host *.useast.sensi
+  User akutta
+
+Host openvpn.sensiapi.io
+  Port 2222
+
+Host *.sensiapi.io
+  User akutta
+
+Host 35.165.116.132
+  User ec2-user
+  IdentityFile ~/.ssh/PortalsEC2.pem
+
+Host *.sensiportals.io
+  User ec2-user
+  IdentityFile ~/.ssh/PortalsEC2.pem
+
+Host *.cg
+  User root

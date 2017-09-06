@@ -1,0 +1,17 @@
+[alias]
+	co = checkout
+	br = branch
+	ci = commit
+	st = status
+  unstage = reset HEAD --
+  amend = commit --amend --no-edit
+  gp = push origin HEAD
+  update = submodule update --init --recursive
+[url "ssh://git@github.com/"]
+	insteadOf = https://github.com/
+[user]
+	name = Andrew Kutta
+	email = andrew.kutta@emerson.com
+[core]
+	editor = /usr/local/bin/vim
+	autocrlf = input
