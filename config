@@ -1,3 +1,4 @@
+StrictHostKeyChecking=no
 Host *.sensi
   User root
 Host rundeck
