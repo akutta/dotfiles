@@ -1,25 +1,32 @@
+export PATH=/Users/akutta/erlang/17.5/bin:/Users/akutta/.rbenv/shims:/Users/akutta/.rbenv/shims:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/local/share/dotnet:/Users/akutta/projects/go/bin:/Users/akutta/projects/go/bin:/usr/local/Cellar/mysql/5.6.27/bin:/usr/local/mysql/bin
 alias ll='ls -lahG'
 alias refresh_ec2='/etc/ansible/ec2.py --refresh-cache'
+alias flushdns='sudo killall -HUP mDNSResponder'
+alias screen_tstat='script -a -t 0 screen.log screen /dev/cu.usbserial-FTWKTMM0 115200'
 
+export MONO_GAC_PREFIX="/usr/local"
 alias docker-rm='docker rm $(docker ps -a -q) -f'
+alias myip='dig +short myip.opendns.com @resolver1.opendns.com'
 
-export PYTHONPATH="/usr/local/lib/python2.7/site-packages"
+export LANG="en_US.UTF-8"
+export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
+#export PYTHONPATH="/usr/local/lib/python2.7/site-packages"
 export GOPATH=$HOME/projects/go
 export MYSQL_PATH=/usr/local/Cellar/mysql/5.6.27
 export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:$MYSQL_PATH/bin
-export ANSIBLE_HOSTS=hosts
-export ANSIBLE_VAULT_PASSWORD_FILE=~/.ansible_vault
+export ANSIBLE_VAULT_PASSWORD_FILE=~/.ansible-vault
 export ANSIBLE_HOST_KEY_CHECKING=False
 
 
 alias vi=vim
 
 export NVM_DIR="$HOME/.nvm"
-. "$(brew --prefix nvm)/nvm.sh"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
-eval "$(rbenv init -)"
+#eval "$(rbenv init -)"
 .  ~/erlang/17.5/activate
 
 export_creds() {
@@ -36,30 +43,6 @@ alias wwex_dev='for i in credentials config; do ln -sf ~/.aws/$i.wwex ~/.aws/$i;
 
 export DEVENV=`ls -l ~/.aws/config | rev | cut -d. -f1 | rev`
 export PS1="\h:\W \u[\${DEVENV}]:\$ "
-# BEGIN ANSIBLE MANAGED BLOCK
-export NVM_DIR="$HOME/.nvm"
-. "$(brew --prefix nvm)/nvm.sh"
-# END ANSIBLE MANAGED BLOCK
-
-function _makefile_targets {
-  local curr_arg;
-  local targets;
-
-  # Find makefile targets available in the current directory
-  targets=''
-  if [[ -e "$(pwd)/Makefile" ]]; then
-    targets=$( \
-      grep -oE '^[a-zA-Z0-9_-]+:' Makefile \
-      | sed 's/://' \
-      | tr '\n' ' ' \
-      )
-  fi
-
-  # Filter targets based on user input to the bash completion
-  curr_arg=${COMP_WORDS[COMP_CWORD]}
-  COMPREPLY=( $(compgen -W "${targets[@]}" -- $curr_arg ) );
-}
-complete -F _makefile_targets make
 
 export ANSIBLE_NOCOWS=1
 
@@ -72,7 +55,6 @@ iterm_both () { set_iterm_name 0 $@; }
 iterm_tab () { set_iterm_name 1 $@; }
 iterm_window () { set_iterm_name 2 $@; }
 
-export PATH=/Users/akutta/.nvm/versions/node/v4.3.2/bin:/Users/akutta/erlang/17.5/bin:/Users/akutta/.rbenv/shims:/Users/akutta/.rbenv/shims:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/local/share/dotnet:/Users/akutta/projects/go/bin:/Users/akutta/projects/go/bin:/usr/local/Cellar/mysql/5.6.27/bin:/usr/local/mysql/bin
 
 if [ -f ~/.git-completion.bash ]; then
   . ~/.git-completion.bash
