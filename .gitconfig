@@ -1,4 +1,7 @@
 [alias]
+  retag=tag -af $(git describe --abbrev=0)
+  ignore=!([ ! -e .gitignore ] && touch .gitignore) | echo $1 >>.gitignore
+  latest = describe --tags --abbrev=0
 	co = checkout
 	br = branch
 	ci = commit
@@ -7,6 +10,8 @@
   amend = commit --amend --no-edit
   gp = push origin HEAD
   update = submodule update --init --recursive
+  retag = "!sh -c 'git tag -fa $(git describe --abbrev=0) $(git rev-parse HEAD)'"
+  git = !exec git
 [url "ssh://git@github.com/"]
 	insteadOf = https://github.com/
 [user]
@@ -15,3 +20,5 @@
 [core]
 	editor = /usr/local/bin/vim
 	autocrlf = input
+[color]
+	ui = auto
